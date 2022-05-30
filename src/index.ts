@@ -1,13 +1,16 @@
 import * as Koa from "koa";
 import * as Router from "koa-router";
 import * as bodyParser from "koa-bodyparser";
-import { PORT } from "./config";
+import { dbInit, PORT } from "./config";
 import AppRoutes from "./routes";
 import { catchError } from "./middlewares/catcherror";
 
 const app = new Koa();
 const router = new Router();
 
+dbInit();
+
+// 全局异常处理
 app.use(catchError);
 
 //路由
