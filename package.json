@@ -19,6 +19,8 @@
     "koa": "^2.7.0",
     "koa-bodyparser": "^4.2.1",
     "koa-router": "^7.4.0",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.3",
     "mysql": "^2.18.1",
     "typeorm": "^0.3.6"
   },

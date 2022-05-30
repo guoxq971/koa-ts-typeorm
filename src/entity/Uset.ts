@@ -1,48 +1,55 @@
-import { Entity, Column, PrimaryGeneratedColumn, AfterInsert } from "typeorm";
+import moment = require("moment");
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  AfterInsert,
+  UpdateDateColumn,
+  CreateDateColumn,
+} from "typeorm";
 
 @Entity()
 export class User {
-  @PrimaryGeneratedColumn()
-  public id: number;
+  @PrimaryGeneratedColumn("uuid")
+  id: string;
 
   @Column({
-    nullable: false,
-    unique: true,
-  })
-  public login: string;
-
-  @Column({
-    length: 100,
-    unique: true,
-    nullable: false,
-  })
-  public email: string;
-
-  @Column({
-    length: 80,
-  })
-  public firstName: string;
-
-  @Column({
-    length: 80,
     nullable: true,
   })
-  public lastName: string;
+  public name: string;
 
   @Column({
-    nullable: false,
-    select: false,
+    name: "create_time",
+    comment: "创建时间",
+    transformer: {
+      to(value) {
+        return moment(value).format("yyyy-MM-DD HH:mm:ss");
+      },
+      from(value) {
+        return moment(value).format("yyyy-MM-DD HH:mm:ss");
+      },
+    },
   })
-  public password: string;
+  public createTime: Date;
 
-  @Column({
-    name: "date_create",
-    default: () => "NOW()", // tslint:disable-line
+  @UpdateDateColumn({
+    name: "update_time",
+    comment: "更新时间",
+    transformer: {
+      // 设置值触发
+      to(value) {
+        return moment(value).format("yyyy-MM-DD HH:mm:ss");
+      },
+      // 取值触发
+      from(value) {
+        return moment(value).format("yyyy-MM-DD HH:mm:ss");
+      },
+    },
   })
-  public dateCreate: Date;
+  public updateTime: Date;
 
   @AfterInsert()
   protected afterSave(): void {
-    console.log("Create user: ", this.email);
+    console.log("Create user: ", this);
   }
 }
