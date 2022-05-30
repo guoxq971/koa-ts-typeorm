@@ -11,14 +11,14 @@ import {
 @Entity()
 export class User {
   @PrimaryGeneratedColumn("uuid")
-  id: string;
+  id?: string;
 
   @Column({
     nullable: true,
   })
   public name: string;
 
-  @Column({
+  @CreateDateColumn({
     name: "create_time",
     comment: "创建时间",
     transformer: {
@@ -30,7 +30,7 @@ export class User {
       },
     },
   })
-  public createTime: Date;
+  public createTime?: Date;
 
   @UpdateDateColumn({
     name: "update_time",
@@ -46,7 +46,7 @@ export class User {
       },
     },
   })
-  public updateTime: Date;
+  public updateTime?: Date;
 
   @AfterInsert()
   protected afterSave(): void {

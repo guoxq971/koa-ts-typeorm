@@ -10,9 +10,11 @@ const catchError = async (ctx, next) => {
         code: error.errorCode,
       });
     } else {
+      console.log(error);
       return (ctx.body = {
         msg: "系统错误",
-        code: 200,
+        code: 1,
+        error,
       });
     }
   }
