@@ -15,11 +15,16 @@ export default [
   {
     path: "/user/remove/:id",
     method: "get",
-    action: userController.remove,
+    action: userController.get,
   },
   {
     path: "/user/save",
     method: "post",
     action: userController.save,
+  },
+  {
+    path: "/user/list",
+    method: "post",
+    action: userController.list,
   },
 ];

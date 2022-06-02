@@ -7,6 +7,11 @@ import UserService from "../service/user-service";
 class userController {
   private service: UserService = new UserService();
 
+  list = async (ctx) => {
+    const body = ctx.request.body;
+    let user = await this.service.list();
+    ctx.body = new success(user);
+  };
   get = async (ctx) => {
     const { id } = ctx.params;
     if (useTool.isEmptyPlus(id)) throw new HttpException("id不能为空");
@@ -17,6 +22,7 @@ class userController {
   save = async (ctx) => {
     const body: User = ctx.request.body;
     if (useTool.isEmptyPlus(body)) throw new HttpException("参数不能为空");
+    if (useTool.isEmptyPlus(body.id)) delete body.id;
     let user = await this.service.save(body);
     user = await this.service.get(user.id);
     ctx.body = new success(user);

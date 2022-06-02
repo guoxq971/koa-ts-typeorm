@@ -2,6 +2,9 @@ import { AppDataSource } from "src/config";
 import { User } from "src/entity/Uset";
 
 export default class userService {
+  list = async () => {
+    return AppDataSource.getRepository(User).find({ where: {} });
+  };
   get = async (id) => {
     return AppDataSource.getRepository(User).findOne({ where: { id: id } });
   };
