@@ -1,14 +1,15 @@
 import * as dotenv from "dotenv";
 
 dotenv.config();
-export const { PORT } = process.env;
+export const {PORT} = process.env;
 
-import { DataSource } from "typeorm";
-import { User } from "./entity/Uset";
-import { useTool } from "./utils/useTool";
+import {DataSource} from "typeorm";
+import {User} from "./entity/Uset";
+import {useTool} from "./utils/useTool";
 
 export let db = null;
-export let AppDataSource = null;
+export let AppDataSource: DataSource = null;
+
 export function dbInit() {
   AppDataSource = new DataSource({
     type: "mysql",
@@ -18,7 +19,7 @@ export function dbInit() {
     password: "root",
     database: "test",
     entities: ["src/entity/*.ts"],
-    logging: false, // 是否打印日志
+    logging: true, // 是否打印日志
     logger: "advanced-console", // 日志类型
     synchronize: true, //自动创建模型
     entityPrefix: "test_", // 实体前缀

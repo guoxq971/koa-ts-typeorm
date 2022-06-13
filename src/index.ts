@@ -14,7 +14,7 @@ dbInit();
 app.use(catchError);
 
 //路由
-AppRoutes.forEach((route) => router[route.method](route.path, route.action));
+AppRoutes.forEach((route) => router[route.method](`/api${route.path}`, route.action));
 
 app.use(bodyParser());
 app.use(router.routes());
