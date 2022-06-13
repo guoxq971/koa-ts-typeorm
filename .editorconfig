@@ -1,0 +1,15 @@
+root = true
+
+[*]
+charset = utf-8 #统一编辑器的编码
+indent_style = space #缩减为空格
+indent_size = 2 #设置缩减大小
+end_of_line = lf #设置换行符LF(mac/linux) CRLF(windows)
+insert_final_newline = true #表明使文件以一个空白行结尾
+trim_trailing_whitespace = true #设为true表示会除去换行行首的任意空白字符
+
+[*.md]
+trim_trailing_whitespace = false
+
+[Makefile]
+indent_style = tab
